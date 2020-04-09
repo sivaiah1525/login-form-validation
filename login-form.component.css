@@ -1,0 +1,15 @@
+form {
+  width: 30%;
+  margin: 10% 30%;
+}
+mat-form-field {
+  width: 100%;
+}
+h3 {
+  text-align: center;
+}
+.color {
+  color: crimson;
+  border: 1px solid gray;
+  padding: 10px;
+}

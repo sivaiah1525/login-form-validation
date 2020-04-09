@@ -1,0 +1,92 @@
+<div>
+  <form #loginform="ngForm" (ngSubmit)="saveData(loginform)">
+    <div>
+      <h3>Sign Up Form</h3>
+      <!-- <h3 [(ngModel)]="alertError">{{ alertError }}</h3> -->
+      <h3 class="color">{{ error }}</h3>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          type="text"
+          required
+          name="name"
+          ngModel
+          placeholder="Name"
+        />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>email</mat-label>
+        <input
+          matInput
+          type="email"
+          name="email"
+          email
+          required
+          ngModel
+          placeholder="email"
+        />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>password</mat-label>
+        <input
+          type="password"
+          name="password"
+          ngModel
+          required
+          matInput
+          placeholder="password"
+          minlength="6"
+          #passwordCtrl="ngModel"
+        />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-error *ngIf="passwordCtrl.errors">
+          <span *ngIf="passwordCtrl.errors.required">Password Required</span>
+          <span *ngIf="passwordCtrl.errors.minlength"
+            >Minimum length should be
+            {{ passwordCtrl.errors.minlength.requiredLength }}</span
+          >
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm Password</mat-label>
+        <input
+          type="password"
+          name="cPassword"
+          ngModel
+          (ngModelChange)="handleCPasswordChanges(loginform)"
+          required
+          matInput
+          placeholder="Confirm Password"
+          minlength="5"
+          #cPasswordCtrl="ngModel"
+        />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-error *ngIf="cPasswordCtrl.errors">
+          <span *ngIf="cPasswordCtrl.errors.required">Password Required</span>
+          <span *ngIf="cPasswordCtrl.errors.minlength"
+            >Minimum length should be
+            {{ cPasswordCtrl.errors.minlength.requiredLength }}</span
+          >
+          <span *ngIf="cPasswordCtrl.errors.notMatched">Not Matched</span>
+        </mat-error>
+      </mat-form-field>
+
+      {{ cPasswordCtrl.errors | json }}
+    </div>
+    <div>
+      <button mat-raised-button color="primary" [disabled]="loginform.invalid">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
